@@ -1,0 +1,35 @@
+<p>view-questions works!</p>
+<div class="container">
+    <nav>
+    <a routerLinkActive="active" routerLink="/admin-landing">Landing Page</a><br>
+  </nav>
+  
+    <!-- No data message -->
+    <p *ngIf="Questions.length <= 0" class="no-data text-center">There is no questions added yet!</p>
+  
+    <!-- Questions list -->
+    <table class="table table-bordered" *ngIf="Questions.length > 0">
+        
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Question</th>
+          <th scope="col">Answer</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let question of Questions; let i = index">
+          <td>{{question.question}}</td>
+          <td>{{question.answer}}</td>
+          <td class="text-center">
+            <span class="edit" [routerLink]="['/edit-questions/', question._id]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removeQuestion(question, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
